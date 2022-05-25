@@ -7,19 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
+import Posts from './Posts';
+import { useState } from 'react';
+
 
 function Users({users,filterName,filterEmail}){
-
-    // console.log('table',filters);
-
-    // const rows = users? users.map(user => (
-    //     {
-    //         id: user.id,
-    //         name: user.name,
-    //         email: user.email,
-    //         companyName: user.company.name
-    //     }
-    // )) : {};
 
     const rows = users.filter(user => (user.name.toLowerCase().includes(filterName) || filterName === '') && (user.email.toLowerCase().includes(filterEmail) || filterEmail ===''))
     .map(user => (
@@ -29,8 +21,6 @@ function Users({users,filterName,filterEmail}){
           email: user.email,
           companyName: user.company.name
       }));
-
-    console.log('rows',rows)
 
 
 
@@ -57,7 +47,9 @@ function Users({users,filterName,filterEmail}){
               </TableCell>
               <TableCell align="left">{row.email}</TableCell>
               <TableCell align="left">{row.companyName}</TableCell>
-              <TableCell align="left"><Button>show posts</Button></TableCell>
+              <TableCell align="left">
+                <Posts/>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
